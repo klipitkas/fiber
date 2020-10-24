@@ -1,20 +1,24 @@
 # RequestID
+
 RequestID middleware for [Fiber](https://github.com/gofiber/fiber) that adds an indentifier to the response.
 
 ### Table of Contents
+
 - [Signatures](#signatures)
 - [Examples](#examples)
 - [Config](#config)
 - [Default Config](#default-config)
 
-
 ### Signatures
+
 ```go
 func New(config ...Config) fiber.Handler
 ```
 
 ### Examples
+
 Import the middleware package that is part of the Fiber web framework
+
 ```go
 import (
   "github.com/gofiber/fiber/v2"
@@ -23,6 +27,7 @@ import (
 ```
 
 After you initiate your Fiber app, you can use the following possibilities:
+
 ```go
 // Default middleware config
 app.Use(requestid.New())
@@ -37,6 +42,7 @@ app.Use(requestid.New(requestid.Config{
 ```
 
 ### Config
+
 ```go
 // Config defines the config for middleware.
 type Config struct {
@@ -64,13 +70,12 @@ type Config struct {
 ```
 
 ### Default Config
+
 ```go
 var ConfigDefault = Config{
-	Next:       nil,
-	Header:     fiber.HeaderXRequestID,
-	Generator:  func() string {
-		return utils.UUID()
-	},
-	ContextKey: "requestid"
+	Next:      nil,
+	Header:    fiber.HeaderXRequestID,
+	Generator: utils.UUID,
+	ContextKey: "requestid",
 }
 ```
